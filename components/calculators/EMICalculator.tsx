@@ -6,7 +6,7 @@ import Link from 'next/link';
 import CalculatorCard, { SliderField } from '@/components/CalculatorCard';
 import ResultCard from '@/components/ResultCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import { TopAd, HorizontalAd, InArticleAd, StickyBottomAd } from '@/components/AdSlot';
+import { TopAd, HorizontalAd, InArticleAd } from '@/components/AdSlot';
 import { calculateEMI } from '@/lib/formulas';
 import { useCurrency } from '@/context/CurrencyContext';
 import { emiFAQs } from '@/lib/faq-data';
@@ -224,8 +224,6 @@ export default function EMICalculator() {
                 </div>
             </div>
 
-            {/* Sticky Bottom Ad for Mobile */}
-            <StickyBottomAd />
 
             {/* Structured Data */}
             <script

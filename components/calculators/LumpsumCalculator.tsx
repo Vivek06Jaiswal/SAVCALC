@@ -6,7 +6,7 @@ import Link from 'next/link';
 import CalculatorCard, { SliderField } from '@/components/CalculatorCard';
 import ResultCard from '@/components/ResultCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import { TopAd, HorizontalAd, InArticleAd, StickyBottomAd } from '@/components/AdSlot';
+import { TopAd, HorizontalAd, InArticleAd } from '@/components/AdSlot';
 import { calculateLumpsum } from '@/lib/formulas';
 import { useCurrency } from '@/context/CurrencyContext';
 import { lumpsumFAQs } from '@/lib/faq-data';
@@ -200,8 +200,6 @@ export default function LumpsumCalculator() {
                 </div>
             </div>
 
-            {/* Sticky Bottom Ad for Mobile */}
-            <StickyBottomAd />
 
             {/* Structured Data */}
             <script

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://savcalc.com",
+    url: "https://savcalc.vercel.app",
     siteName: "SavCalc",
     title: "SavCalc - Free Financial Calculators 2026",
     description: "Free online financial calculators for SIP, EMI, FD, RD, SWP, and Lumpsum investments.",
@@ -51,6 +51,9 @@ export const metadata: Metadata = {
   },
 };
 
+const adsensePubId = process.env.NEXT_PUBLIC_ADSENSE_PUB_ID;
+const hasAdsense = Boolean(adsensePubId && adsensePubId.length > 5 && !adsensePubId.includes('XXXX'));
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -59,11 +62,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        {hasAdsense && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsensePubId}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <ThemeProvider>
@@ -77,7 +83,7 @@ export default function RootLayout({
             </div>
           </CurrencyProvider>
         </ThemeProvider>
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        <GoogleAnalytics gaId="G-8JSH9RNL3T" />
       </body>
     </html>
   );

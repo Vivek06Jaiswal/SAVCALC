@@ -6,7 +6,7 @@ import Link from 'next/link';
 import CalculatorCard, { SliderField } from '@/components/CalculatorCard';
 import ResultCard from '@/components/ResultCard';
 import FAQAccordion from '@/components/FAQAccordion';
-import { TopAd, HorizontalAd, InArticleAd, StickyBottomAd } from '@/components/AdSlot';
+import { TopAd, HorizontalAd, InArticleAd } from '@/components/AdSlot';
 import { calculateStepUpSIP } from '@/lib/formulas';
 import { useCurrency } from '@/context/CurrencyContext';
 import { stepUpSipFAQs } from '@/lib/faq-data';
@@ -215,8 +215,6 @@ export default function StepUpSIPCalculator() {
                 </div>
             </div>
 
-            {/* Sticky Bottom Ad for Mobile */}
-            <StickyBottomAd />
 
             {/* Structured Data */}
             <script
