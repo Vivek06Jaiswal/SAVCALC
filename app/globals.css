@@ -2,25 +2,344 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --primary: #10b981;
+  --secondary: #f1f5f9;
+  --muted: #64748b;
+  --border: #e2e8f0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --primary: #10b981;
+  --secondary: #334155;
+  --muted: #94a3b8;
+  --border: #334155;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mobile-first calculator layout */
+.calculator-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .calculator-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Mobile-optimized range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  height: 8px;
+  border-radius: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #14b8a6);
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  input[type="range"]::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #14b8a6);
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Remove number input spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Touch-friendly buttons */
+button,
+a {
+  touch-action: manipulation;
+}
+
+/* Ad container - responsive */
+.ad-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* SEO Content - responsive typography */
+.seo-content {
+  max-width: 100%;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .seo-content {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+.seo-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .seo-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.seo-content p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 0.9375rem;
+}
+
+@media (min-width: 768px) {
+  .seo-content p {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+}
+
+.seo-content ul,
+.seo-content ol {
+  color: var(--muted);
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.seo-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.seo-content strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* FAQ - touch-friendly */
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1rem;
+  background: var(--secondary);
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .faq-question {
+    font-size: 1rem;
+    padding: 1rem 1.25rem;
+  }
+}
+
+.faq-answer {
+  padding: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.875rem;
+  background: var(--card);
+}
+
+@media (min-width: 768px) {
+  .faq-answer {
+    font-size: 1rem;
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* Safe area for mobile ads */
+.safe-area-inset-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Scrollbar - minimal */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 3px;
+}
+
+/* ===== PROFESSIONAL SPACING SYSTEM ===== */
+
+/* Section spacing - consistent vertical rhythm */
+.page-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .page-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* SEO content section spacing */
+.seo-content {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .seo-content {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+
+/* FAQ section spacing */
+.faq-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .faq-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+  }
+}
+
+/* Ad wrapper spacing */
+.ad-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .ad-wrapper {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* Footer top margin - separation from content */
+footer {
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  footer {
+    margin-top: 5rem;
+  }
+}
+
+/* Card spacing within grids */
+.calculator-container>* {
+  margin-bottom: 0;
+}
+
+/* Content wrapper padding */
+.content-wrapper {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .content-wrapper {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Bottom padding for sticky ad */
+.has-sticky-ad {
+  padding-bottom: 70px;
+}
+
+@media (min-width: 768px) {
+  .has-sticky-ad {
+    padding-bottom: 0;
+  }
 }
